@@ -6,7 +6,9 @@ public class playerMove : MonoBehaviour {
     public float maxSpeed = 3f;
     public float speed = 30f;
     public float jump = 1000f;
+    public float force = 40f;
     public bool grounded;
+    public bool plateforme;
     private Rigidbody2D rb;
     private Animator anim;
     private bool facingRight = true;
@@ -106,6 +108,11 @@ public class playerMove : MonoBehaviour {
             vel.y -= 5 * Time.deltaTime;
             rb.velocity = vel;
         } 
+        if (plateforme)
+        {
+            rb.AddForce(new Vector2(-1, 3) *15*force);
+            plateforme = false;
+        }
      }
     
     void Flip()
